@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Testing</h1>
+
+    <div id="iframe-container">
+
+    </div>
+
+
+</body>
+
+<script>
+    function fetchAndRenderIframe() {
+        const apiUrl = 'http://localhost:3000/api/html-content'; // Replace with the actual API endpoint URL
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text(); // Use response.text() to get the raw iframe content as a string
+            })
+            .then(iframeContent => {
+                // Render the iframe content inside the container div
+                const iframeContainer = document.getElementById('iframe-container');
+                iframeContainer.innerHTML = iframeContent;
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }
+
+    // Call the fetchAndRenderIframe function when the script is loaded
+    fetchAndRenderIframe();
+</script>
+
+</html>
